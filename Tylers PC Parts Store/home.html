@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="js/cookiemanager.js" ></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" />
+    <style>
+    #content
+    { 
+      width: 700px;
+      padding: 0;
+      margin-right: 20px;
+    }
+    </style>
+
+    <script>
+      function loadproductspage()
+      {
+        window.location.href="products.html";
+      }
+    </script>
+
+  </head>
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+      <span style="float: right; margin-right:20px;"><img style="width:75px;" src="images/shopping_cart_white.png"  onclick="loadcartpage()" alt="example graphic" /></span>
+      <div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align" style="margin-right:154px;">
+        <script src="js/menu.js"></script>
+      </div>
+    </div>
+    <center>    
+      <div id="content">
+        <div style="text-align: middle; font-size:16px; padding: 0;">
+          <h1 style="font: normal 220% 'century gothic', arial, sans-serif;color: #43423F;margin: 0 0 15px 0; padding: 15px 0 5px 0;">Welcome to Tyler's PC Parts Store!</h1>
+          <span style="float: center;width: auto; margin-right: 10px;"><img style="width:400px;" src="images/home_main.png"  alt="example graphic" /></span>
+          <p>
+            <h2 style="font-weight:bold">Computer Hardware and more</h2>
+            Welcome to our Store! We offer a wide range of high-quality components for all your computing needs. Browse our extensive selection of processors, graphics cards, memory modules, storage devices, and more. With our competitive prices and reliable products, you can build or upgrade your computer with confidence. Whether you're a gaming enthusiast, a professional seeking powerful hardware, or a tech-savvy individual, we have the perfect parts to enhance your computing experience. Explore our website now and unleash the full potential of your system.
+          </p>
+          <br><br>
+          <h1 style="font: normal 220% 'century gothic', arial, sans-serif;color: #43423F;margin: 0 0 15px 0; padding: 15px 0 5px 0;">Check out what products we have in stock!</h1>
+          <span style="float: center;width: auto;"><img style="width:645px;" src="images/tech_pic_2.jpg"  onclick="loadproductspage()" alt="example graphic" /></span>
+          <p>
+            <a href="products.html"><h2 style="font-weight:bold"><u>View Products</u></h2></a><br><br><br><br>
+          </p>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>

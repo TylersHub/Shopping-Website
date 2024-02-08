@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="js/cookiemanager.js" ></script>
+	  <script src="js/cookiemanager.js" ></script>
+    <script src="js/validation.js"></script>
+    <script>
+      function logoff()
+      {
+        setCookie("flag","",-1);
+        setCookie("whoami","",-1);
+        location.href="login.html";
+      }
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" /> 
+    <title>Logoff</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" />
+    <style type="text/css">
+		  #content
+      { 
+        text-align: left;
+        width: 500px;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+      <span style="float: right; margin-right:20px;"><img style="width:75px;" src="images/shopping_cart_white.png"  onclick="loadcartpage()" alt="example graphic" /></span>
+      <div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align" style="margin-right:154px;">
+        <script src="js/menu.js"></script>   
+      </div>
+    </div>
+    <center>
+      <div id="content" >
+        <div style="text-align: left; padding: 0;">
+          <div id="content">
+            <h1 style="font: normal 179% 'century gothic', arial, sans-serif;color: #43423F;margin: 0 0 15px 0;padding: 15px 0 5px 0; text-align: center;" >Logoff</h1><br>
+            <form>
+              <center>
+                <input type="button" value="Logoff" onclick="logoff()">
+              </center>
+            </form>
+          </div>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="js/cookiemanager.js" ></script>
+		<script src="js/validation.js"></script> 
+		<script src="js/catalog.js" ></script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+		<title>Cart</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/site_style.css" />
+		<style>
+		#content
+		{width: 500px; padding: 0;}
+		th{text-align:left;}
+  		td{border-bottom:solid black 1px}
+  		input[type='text']{width:50px;}
+		</style>
+  		<script>
+  		function delete2(code)
+  		{
+	  		let x=new ShoppingCart(getCookie('whoami'));
+	  		x.setNumOrdered(code,0); 
+	  		location.reload();
+  		}
+  		function update(code)
+  		{
+			var name=code+"qty";
+			value=parseInt(document.getElementById(name).value);
+			let x=new ShoppingCart(getCookie('whoami'));
+			x.setNumOrdered(code,value);
+			//x.storeCart();
+			location.reload();
+  		}
+  		function createCart()
+  		{  
+			var flag2=false;
+			var total=0;
+			var str="<table>";
+			str+="<tr><th colspan='2'>NAME</th><th>QUANTITY</th><th>PRICE</th><th>SUBTOTAL</th>";
+			let x=new ShoppingCart(getCookie('whoami'));
+			let items=x.getItemsOrdered();
+			for(let i=0;i<items.length;i++)
+			{
+				let qty	=items[i].getNumItems();	
+				if(qty !=null)
+				{	
+					var name=items[i].getItemCode()+"qty";
+					var image=items[i].getItemImage();
+			
+					str+="<tr>";
+					str+="<td style='text-align:left'>"+"<img src='"+image+"' />"+"</td>";
+					str+="<td style='text-align:left'>"+items[i].getItemName()+"</td>";
+					str+="<td style='text-align:right'>"+"<input id='"+name+"'type='text' value='"+qty+"' />"+
+					"<input id='"+items[i].getItemCode()+"' type='button' value='update' onclick='update(this.id);' />"+
+					"<img src='images/x.png' width='20px;' onclick=delete2('"+items[i].getItemCode()+"') /></td>";
+					str+="<td style='text-align:right'>$"+items[i].getUnitCost()+"</td>";
+					str+="<td style='text-align:right'>$"+items[i].getTotalCost()+"</td>";
+					str+="</tr>";
+					flag2=true;
+				}		
+			}
+			str+="<tr><td colspan='4' style='text-align:left'>TOTAL</td><td style='text-align:right'>$"+x.getTotalCost()+"</td></tr>";
+			str+="</table>";
+			if(flag2)
+			{
+				document.getElementById("info").innerHTML=str;
+				document.getElementById("info2").innerHTML="<a href='shipping.html'><br><p style='font-size:18px;'><u>Shipping</u><p></a>";
+			}
+			else 
+			{
+				document.getElementById("info").innerHTML="<h2>EMPTY CART<br><a href='products.html'><br>Go Back Shopping</a></h2>";
+			}	
+  		}
+  		</script>
+
+	</head>
+	<body onload="createCart();">
+		<div id="nav" style="background:black;color:white;">
+			<span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+			<span style="float: right; margin-right:20px;"><img style="width:75px;" src="images/shopping_cart_white.png"  onclick="loadcartpage()" alt="example graphic" /></span>
+			<div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      		<div class="col-sm nav-align" style="margin-right:154px;">
+				<script src="js/menu.js"></script>
+        	</div>
+		</div>
+
+		<center>
+        	<div id="content">
+        		<div style="text-align: left; padding: 0;">
+          		<div id="info"></div>
+          		<div id="info2"></div>
+        		</div>
+        	</div>
+		</center>
+	</body>
+</html>

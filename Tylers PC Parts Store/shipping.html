@@ -1,0 +1,116 @@
+<html>
+<head>
+  <title>Shipping</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+  <title>Home</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/site_style.css" />
+  <style>
+  #content
+  { 
+  width: 700px;
+  padding: 0;
+  margin-right: 20px;
+  }
+	  td{border-bottom:solid black 1px}
+	  th{text-align:left;}
+	  input[type='text']{width:50px;}
+  </style>
+
+  <script src="js/cookiemanager.js" ></script>
+  <script src="js/validation.js"></script>
+  <script src="js/catalog.js" ></script>
+   
+  <script>
+  function shipping()
+  {
+	var select=document.getElementById("ship");
+	var index=select.selectedIndex;
+	var value=select.options[index].value;
+	let x=new ShoppingCart(getCookie('whoami'));
+	var str="$"+x.addShipping(parseFloat(value));
+	document.getElementById("shiptotal").innerHTML=str;
+  }
+  function createCart()
+  {  
+	var str="<table>";
+	str+="<tr><th colspan='2'>NAME</th><th>QUANTITY&nbsp&nbsp&nbsp</th><th>PRICE</th><th>SUBTOTAL</th>";	
+	let x=new ShoppingCart(getCookie('whoami'));	
+	let items=x.getItemsOrdered();
+	for(let i=0;i<items.length;i++)
+	{
+		qty		=items[i].getNumItems();
+		if(qty !=null)
+		{	
+			var image=items[i].getItemImage();
+			
+			str+="<tr>";
+			str+="<td style='text-align:left'>"+"<img width='100px' src='"+image+"' />"+"</td>";
+			str+="<td style='text-align:left'>"+items[i].getItemName()+"</td>";
+			str+="<td style='text-align:center'>&nbsp&nbsp"+qty+"</td>";
+			str+="<td style='text-align:right'>$"+items[i].getUnitCost()+"</td>";
+			str+="<td style='text-align:right'>$"+items[i].getTotalCost()+"</td>";
+			str+="</tr>";
+			flag2=true;
+		}		
+	}
+	str+="<tr><td colspan='4'>TOTAL BEFORE TAX</td><td style='text-align:right'>$"+x.getTotalCost()+"</td></tr>";
+	str+="<tr><td colspan='4'>TOTAL AFTER TAX:</td><td style='text-align:right'>$"+x.addTax()+"</td></tr>";
+	
+	str+="<tr><td colspan='4'> COST WITH SHIPPING:";
+	str+="<select id='ship'  onchange='shipping();' >";
+	str+="<option value=''></option>";
+	str+="<option value='0'>Regular-$0</option>";
+	str+="<option value='15'>Express-$15</option>";
+	str+="<option value='20'>Next Day-$20</option>";
+	str+="</select></td>";
+	str+="<td id='shiptotal' style='text-align:right'></td>";
+	str+="</tr>";
+	
+	str+="</table>";
+	document.getElementById("info").innerHTML=str;
+  }
+  function shipvalid()
+  {
+	var ship=document.getElementById('ship');
+	var vali=ship.options[ship.selectedIndex].value;
+	if(vali=='')
+	{
+	alert("You forgot to pick a shipping method!");
+	}
+	else
+	{
+	window.location.href="checkout.html";
+	}
+  }
+  </script>
+</head>
+<body onload="createCart()">
+	<div id="nav" style="background:black;color:white;">
+		
+		<div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+		</div>
+	  </div>
+	  <a href="cart.html" style="margin-left:5px">Back</a>
+<div id="content" class="contentSection"> 
+
+<table width="100%" align=center>
+<tr>
+  <td align=center>Tyler's PC Parts Store</td>
+</tr>
+</table>
+</span>
+<table align=center>
+<tr>
+</tr>
+</table>
+</span>
+</div>
+<div id="content" class="contentSection"> 
+<div id="info"></div>
+<br>
+<a onclick="shipvalid()"><h4 style="margin-left:5px">Place Order</h4></a>
+</div>
+</body>
+</html>

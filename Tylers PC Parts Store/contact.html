@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="js/cookiemanager.js" ></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" />
+    <style type="text/css">
+		  #content
+      { 
+       width: 500px;
+        padding: 0;
+      }
+	      .form_settings
+      { margin: 15px 0 0 0;}
+
+      .form_settings p
+      { padding: 0 0 0px 0;}
+
+      .form_settings span
+      { 
+        float: left; 
+        width: 100px; 
+        text-align: left;
+      }
+      .form_settings input, .form_settings textarea
+      { 
+        padding: 5px; 
+       width: 299px; 
+        font: 100% arial; 
+        border: 1px solid #E5E5DB; 
+        background: #FFF; 
+        color: #47433F;
+      }
+      .form_settings .submit
+      { 
+        font: 100% arial; 
+        border: 2px; 
+        width: 99px; 
+        margin: 1 1 1 1;  
+        height: 33px;
+        padding: 2px 0 3px 0;
+        cursor: pointer; 
+        background: #3B3B3B; 
+        color: #FFF;
+      }
+      .form_settings textarea, .form_settings select
+      { 
+        font: 100% arial; 
+        width: 299px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+      <span style="float: right; margin-right:20px;"><img style="width:75px;" src="images/shopping_cart_white.png"  onclick="loadcartpage()" alt="example graphic" /></span>
+      <div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align" style="margin-right:154px;">
+        <script src="js/menu.js"></script>
+      </div>
+    </div>
+    <center>
+      <div id="content">
+        <h1 style="float:left;font: normal 179% 'century gothic', arial, sans-serif;color: #43423F;margin: 0 0 15px 0;padding: 15px 0 5px 0;" >Contact Us</h1>
+        <br style="clear:both">
+        <p style="float:left">Any Problems or Suggestions? Let us know!</p>
+        <br><br>
+        <form action="#" method="post">
+          <div class="form_settings">
+            <p><span>Name</span><input class="contact" type="text" name="your_name" value="" /></p>
+            <p><span>Email Address</span><input class="contact" type="text" name="your_email" value="" /></p>
+            <p><span>Message</span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
+          </div>
+        </form>
+      </div>
+    </center>
+  </body>
+</html>

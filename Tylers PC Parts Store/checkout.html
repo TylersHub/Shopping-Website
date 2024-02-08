@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Checkout</title>
+    <style>td{border-bottom:solid black 1px}</style>
+    <script src="js/cookiemanager.js" ></script>
+    <script src="js/validation.js"></script> 
+    <script src="js/catalog.js" ></script>
+    <script>
+      function deleteAllCookies()
+      {
+	    let x=new ShoppingCart(getCookie('whoami'));
+	    x.emptyShoppingCart();
+      }
+      deleteAllCookies();
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+    <title>Checkout</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" /> 
+
+    <style>
+      .title
+      {
+        color:white;
+        background-color: #2F2827;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: small;
+        padding: .2em;
+        margin-left: .5em;
+        margin-bottom: .1em;
+        float: right;
+        text-align: left;
+        width: 30%;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-align:right;
+      }
+      .left
+      {
+	      float: left;
+	      width: auto;
+	      margin-right: 10px;
+      }
+      #content
+      { 
+        text-align: left;
+        width: 550px;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <div class="col-sm nav-align"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align"></div>
+    </div>
+    <div style="font-size:26px;">
+      <div id="info">&nbsp;Thank you for your order!</div>
+    </div>
+    <br>
+    <div style="font-size:23px;"><a href="products.html">&nbsp;<u>Continue Shopping</u></a></div>
+  </body>
+</html>

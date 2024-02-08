@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="js/cookiemanager.js" ></script>
+    <script src="js/validation.js"></script>
+    <script src="js/catalog.js" ></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+    <title>Products</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" />
+    
+<style>
+.title
+{
+    color:white;
+    background-color: #2F2827;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: small;
+    padding: .2em;
+    margin-left: .5em;
+    margin-bottom: .1em;
+    float: right;
+    text-align: left;
+   width: 30%;
+   font-weight: bold;
+   font-variant: small-caps;
+   text-align:right;
+}
+.left
+{
+	float: left;
+	width: auto;
+	margin-right: 10px;
+}
+#content
+{ 
+  text-align: left;
+  width: 650px;
+  padding: 0;
+}
+
+</style>
+    
+  <script>
+    function addItem2Cart(x)
+    {
+    let cart=new ShoppingCart(getCookie('whoami'));
+    cart.addItem(x.id);
+    alert(x.name+' Added To Cart ...');
+    }
+  </script>
+ 
+  <script>
+    function loadsolopage(x)
+    {
+    setCookie("page",x,1);
+    window.location.href = "solopage.html";
+    }
+  </script>
+  </head>
+
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+      <span style="float: right; margin-right:20px;"><img style="width:75px;" src="images/shopping_cart_white.png"  onclick="loadcartpage()" alt="example graphic" /></span>
+      <div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align" style="margin-right:154px;">
+        <script src="js/menu.js"></script>
+      </div>
+      
+    </div>
+
+    <center>
+    <script>
+    let x=new Catalog();
+    let items=x.getProducts();
+    for(let i=0;i<items.length;i++)
+    {
+      document.writeln
+      (`
+      
+        <div id="content">
+        <div style="border:solid green 1px;background:#FFFFFF;float:left">
+        <div class="title">${items[i].name}</div>
+        <span class="left"><img src="${items[i].image}" style="width:300px; height:220px"; alt="example graphic" onclick="loadsolopage('${items[i].code}')";/></span>
+        <p>
+        ${items[i].description}<a onclick="loadsolopage('${items[i].code}')">More...</a><br />
+        <span style="float:left;text-align:left;padding:.5em;"><br>$${items[i].price}</span>
+        <span style="float:right;text-align:left;padding:.5em;"><br>
+        <a href="#" onclick="addItem2Cart(this);" id="${items[i].code}" name="${items[i].name}">Add to Cart</a>&nbsp;
+        </span>
+        </p>
+        </div>
+        <p style="clear:both"></p>
+        </div>
+      `);
+    }
+    </script>
+    </center>
+  </body>
+</html>

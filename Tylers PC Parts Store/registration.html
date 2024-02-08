@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="js/cookiemanager.js" ></script>
+   <script>
+	  function registration()
+	  {
+		 username=document.getElementById("username").value;
+		 password=document.getElementById("password").value;
+		 password2=document.getElementById("password2").value;
+		 if(getCookie(username) != null )
+		 {
+				alert("Username already taken..");
+		 }
+		 else
+		 if(password==password2)
+		 {
+			setCookie(username,password,30);
+			alert("Thank you for your registration..");
+			location.href="login.html"
+		 }
+		 else {
+		    alert("Passwords do not match");
+		 }
+		 //alert(username+":"+password+":"+password2);
+	  }
+    function loadhomepage()
+{
+  window.location.href="home.html";
+}
+   </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" />
+    <style type="text/css">
+		#content
+{ text-align: left;
+  width: 613px;
+  padding: 0;}
+	.form_settings
+{ margin: 15px 0 0 0;}
+
+.form_settings p
+{ padding: 0 0 0px 0;}
+
+.form_settings span
+{ float: left; 
+  width: 200px; 
+  text-align: left;}
+  
+.form_settings input, .form_settings textarea
+{ padding: 5px; 
+  width: 299px; 
+  font: 100% arial; 
+  border: 1px solid #E5E5DB; 
+  background: #FFF; 
+  color: #47433F;}
+  
+.form_settings .submit
+{ font: 100% arial; 
+  border: 2px; 
+  width: 99px; 
+  margin: 1 1 1 1;  
+  height: 33px;
+  padding: 2px 0 3px 0;
+  cursor: pointer; 
+  background: #3B3B3B; 
+  color: #FFF;}
+
+.form_settings textarea, .form_settings select
+{ font: 100% arial; 
+  width: 299px;}
+
+.form_settings select
+{ width: 310px;}
+
+.form_settings .checkbox
+{ margin: 4px 0; 
+  padding: 0; 
+  width: 14px;
+  border: 0;
+  background: none;}
+.container
+{
+	text-align:center;
+}
+</style>
+  </head>
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+      <div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align" style="margin-right:154px;">
+        <a href="login.html"> <span class="button">Login</span> </a>
+        <a href="products.html"> <span class="button">Products</span> </a>
+        <a href="contact.html"> <span class="button">Contact</span> </a>
+        <a href="about.html"> <span class="button">About</span> </a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="col-sm-6">
+        <div style="text-align: left;width: 613px; padding: 0;">
+            <div id="content">
+            <h1 style="font: normal 179% 'century gothic', arial, sans-serif;color: #43423F;margin: 0 0 15px 0;padding: 15px 0 5px 0;" >REGISTRATION</h1>
+            <form action="#" method="post">
+              <div class="form_settings">
+                <p><span>Enter Username:</span><input class="contact" type="text" name="your_name" value="" id="username" /></p>
+                <p><span>Enter Password:</span><input class="contact" type="password" name="your_email" value="" id="password" /></p>
+                <p><span>Cofirm Password:</span><input class="contact" type="password" name="your_email" value="" id="password2" /></p>
+                <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="button" name="contact_submitted" value="submit" onclick="registration()" /></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

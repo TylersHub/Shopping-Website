@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table,td,input[type="button"],input[type="text"]{border:solid black 2px;font-size:small;}
+.division{border:solid black 2px;background-color:purple;color:white;margin:2px;padding:1px;font-size:small;}
+th{text-align:center;background:black; color:white;padding:4px;}
+div.v0{ width:100%;}
+div.v1{ width:50%; margin:0px auto; background-color:#EEEEEE;}
+input[type="text"]{border:solid 5px black;}
+input[type="button"]{border: 5px solid black;}
+input[type="button"]:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+</style>
+<title>COOKIE MANAGER</title>
+<script>
+var setCookie=null;
+var getCookie=null;
+var delCookie=null;
+var delAllCookies=null;
+var details=null;
+var raw=null;
+
+if (navigator.userAgent.indexOf("Firefox") >=0  ) 
+{
+    setCookie=function(name,value,days)
+	{
+			var d=new Date();
+			d.setTime(d.getTime()+(24*60*60*1000*days));
+			var expires="expires="+d.toUTCString();
+			document.cookie=name+"="+value+"; "+expires+"; path=/";
+	}
+	getCookie=function(name)
+	{
+			var x=document.cookie.split("; ");
+			for(var i=0;i<x.length;i++)
+			{
+				var y=x[i].split("=");
+				if(y[0]==name) return y[1];
+			}
+			return null;
+	}
+	delCookie=function(name)
+	{
+			setCookie(name,"",-1);
+	}
+    delAllCookies=function()
+	{
+		let x=document.cookie.split("; ");
+		for(var i=0;i<x.length;i++)
+		{
+			var y=x[i].split("=");
+			delCookie(y[0]);
+		}
+	} 
+	details=function()
+	{
+		if(document.cookie.search("=") != -1)
+		{
+			var str="<table style='width:50%;'><tr><th colspan='2'>COOKIE LISTING</th></tr><tr><th>NAME</th><th>VALUE</th></tr>";
+			let A=document.cookie.split("; ");
+			for(var i=0;i<A.length;i++)
+			{
+				var B=A[i].split("=");
+				str+="<tr><td style='width:10;'>"+B[0]+"</td><td style='width:10;'>"+B[1]+"</td></tr>";
+			}
+			str+="</table>";
+			info.innerHTML=str;
+		}
+	}
+	raw=function()
+	{
+		name4.value=document.cookie;
+	}
+}
+else 
+{
+	//alert("LOCAL");
+	setCookie=function(name,value,days)
+	{
+		if(days<0) window.localStorage.removeItem(name);
+		else window.localStorage.setItem(name,value);
+	}
+	getCookie=function(name)
+	{
+		return window.localStorage.getItem(name);
+	}	
+	delCookie=function(name)
+	{
+		window.localStorage.removeItem(name);
+		//location.reload();
+	}
+	delAllCookies=function()
+	{
+		localStorage.clear();
+		//location.reload();
+	} 
+	details=function()
+	{
+		var A = Object.keys(localStorage);
+		if(A.length !=0)
+		{
+			var str="<table style='width:50%;'><tr><th colspan='2'>COOKIE LISTING</th></tr><tr><th>NAME</th><th>VALUE</th></tr>";
+			for(var index in A)
+			{
+				str+="<tr><td style='width:10;'>"+A[index]+"</td><td style='width:10;'>"+localStorage.getItem(A[index])+"</td></tr>";
+			}
+			str+="</table>";
+			info.innerHTML=str;
+		}
+	}
+	raw=function()
+	{
+		name4.value=JSON.stringify(localStorage, null, 2);
+	}
+	/*
+	details=function()
+	{	
+		var A = Object.keys(document.cookie);
+		if(A.length !=0)
+		{
+			var str="<table style='width:50%;'><tr><th colspan='2'>LOCAL STORAGE LISTING</th></tr><tr><th>NAME</th><th>VALUE</th></tr>";
+			for(var index in A)
+			{
+				str+="<tr><td style='width:10;'>"+A[index]+"</td><td style='width:10;'>"+localStorage.getItem(A[index])+"</td></tr>";
+			}
+			str+="</table>";
+			info.innerHTML=str;
+		}
+	}
+	*/
+}
+</script>
+<script>
+function setValue()
+{
+	setCookie(name1.value,value1.value,1);
+	location.reload();
+}
+function getValue2()
+{
+	var x;
+	value2.value=x=getCookie(name2.value);
+}
+</script>
+</head>
+<body onload="details();">
+<div class="v0"><div class="v1">
+	<div class="division" style="font-size:1.5em;text-align:center;background:black; color:white;">COOKIE MANAGER</div>
+	<div class="division">
+		<form>
+		Name:<input type="text" id="name1" size="10" />
+		Value: <input type="text" size="10"  id="value1" />
+		<input type="button" value="SetCookie" onclick="setValue();"/>
+		<input type="button" value="Clear" />
+		</form>
+	</div>
+	<div class="division">
+		<form>
+		Name:<input type="text" size="10" id="name2"/>
+		Value: <input type="text" size="10" id="value2"	/>
+		<input type="button" value="GetCookie" onclick="getValue2()"; />
+		<input type="button" value="Clear" />
+		</form>
+	</div>
+	<div class="division">
+		<form>
+		Name:<input  type="text" size="10" id="name3" />
+		<input type="button" value="DelCookie" onclick="delCookie(name3.value);location.reload();"/>
+		<input type="button" value="DelAllCookies" onclick="delAllCookies();location.reload();" />
+		<input type="button" value="Clear" />
+		</form>
+	</div>
+	<div class="division">
+		<form>
+		<input  type="text" size="35" id="name4" />
+		<input type="button" value="getRawCookie" onclick="raw();"/>
+		<input type="button" value="Clear"/>
+		</form>
+	</div>
+	
+<div class="division">
+	<div id="info"></div>
+</div>
+</div></div>
+</body>
+</html>

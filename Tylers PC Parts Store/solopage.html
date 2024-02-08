@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <script src="js/cookiemanager.js" ></script>
+    <script src="js/validation.js"></script>
+    <script src="js/catalog.js" ></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1" />
+    <title>Item</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site_style.css" />
+    
+    <style>
+.title
+{
+    color:white;
+    background-color: #2F2827;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: large;
+    padding: .2em;
+    margin-left: .5em;
+    margin-bottom: .1em;
+    float: right;
+    text-align: left;
+   width: 30%;
+   font-weight: bold;
+   font-variant: small-caps;
+   text-align:right;
+}
+.left
+{
+	float: left;
+	width: auto;
+	margin-right: 10px;
+}
+#content
+{ 
+  text-align: left;
+  width: 550px;
+  padding: 0;
+}
+</style>
+    
+<script>
+  function addItem2Cart(x)
+  {
+   let cart=new ShoppingCart(getCookie('whoami'));
+   cart.addItem(x.id);
+   alert(x.name+' Added To Cart ...');
+  }
+  </script>
+    
+  </head>
+
+  <body>
+    <div id="nav" style="background:black;color:white;">
+      <span style="float: left; margin-left:15px;"><img style="width:120px;" src="images/home_main_white.png"  onclick="loadhomepage()" alt="example graphic" /></span>
+      <span style="float: right; margin-right:20px;"><img style="width:75px;" src="images/shopping_cart_white.png"  onclick="loadcartpage()" alt="example graphic" /></span>
+      <div class="col-sm nav-align" style="margin-right:154px;"><h1 id="title">Tyler's PC Parts Store</h1></div>
+      <div class="col-sm nav-align" style="margin-right:154px;">
+        <script src="js/menu.js"></script>
+      </div>
+    </div>
+<center>
+  <div id="content">
+    <script>
+      let x=new Catalog();
+      let items=x.getProducts();
+      for(var i=0;i<items.length;i++)
+      {
+        var code=getCookie("page");
+
+        if(code==items[i].code)
+          {
+            var code=items[i].code;
+            var name=items[i].name;
+            var image=items[i].image;
+            var description=items[i].description;
+            document.writeln(`
+              <center>
+                <a href="products.html" style="float: left; margin-right:5px;">Back</a>
+                <img src="${image}" style="width:400px" alt="example graphic" />
+              </center>
+              <h2>${name}</h2><p>
+              ${description}<br />
+              <span style="float:right;text-align:left;padding:.5em;">
+               <a href="#" onclick="addItem2Cart(this);"
+               id="${code}" name="${name}">
+               Add to Cart</a>&nbsp;
+              </span></p>`);
+              break;
+          }
+      }
+    </script>          
+  </div>
+</center>
+</body>
+</html>
